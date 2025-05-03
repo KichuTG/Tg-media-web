@@ -5,7 +5,7 @@ load_dotenv()
 
 class Config:
     # Telegram Bot Configuration
-    BOT_USERNAME = os.getenv("BOT_USERNAME", "")
+    BOT_USERNAME = os.getenv("BOT_USERNAME", "DramaShip1bot")
     
     # Database Configuration
     DATABASE_URI = os.getenv("DATABASE_URI", "mongodb://localhost:27017")
