@@ -1,15 +1,28 @@
-# Use# Use official Nginx image
-FROM nginx:alpine
+# Use official Python image
+FROM python:3.9-slim
 
-# Remove default config and HTML files
-RUN rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/*
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV PORT 8000
 
-# Copy custom Nginx config and static HTML file
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY index.html /usr/share/nginx/html/index.html
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Expose port 8000 (as defined in default.conf)
+# Create and set working directory
+WORKDIR /app
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
+COPY . .
+
+# Expose the port the app runs on
 EXPOSE 8000
 
-# Start Nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+# Command to run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--worker-class", "uvicorn.workers.UvicornWorker", "server:app"]
