@@ -15,10 +15,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # Database connection
-DATABASE_URI = os.getenv("MONGODB_URI", "mongodb://mongo:27017")
-DATABASE_NAME = os.getenv("DATABASE_NAME", "telegram_files")
-COLLECTION_NAME = os.getenv("COLLECTION_NAME", "media_files")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "your_bot_username")
+DATABASE_URI = os.getenv("MONGODB_URI", "mongodb+srv://jiosaavn:jiosaavn@cluster0.ouhhe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DATABASE_NAME = os.getenv("DATABASE_NAME", "PIRO")
+COLLECTION_NAME = os.getenv("COLLECTION_NAME", "Files")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "TGNETFLIX1BOT")
 
 client = AsyncIOMotorClient(DATABASE_URI)
 db = client[DATABASE_NAME]
