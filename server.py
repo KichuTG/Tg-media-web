@@ -30,7 +30,7 @@ templates = Jinja2Templates(directory="templates")
 # Database configuration
 DATABASE_URI = os.getenv("MONGODB_URI", "mongodb+srv://jiosaavn:jiosaavn@cluster0.ouhhe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_NAME = os.getenv("DATABASE_NAME", "PIRO")
-COLLECTION_NAME = os.getenv("COLLECTION_NAME", "FILE")
+COLLECTION_NAME = os.getenv("COLLECTION_NAME", "FILES")
 BOT_USERNAME = os.getenv("BOT_USERNAME", "TGNETFLIX1BOT")
 
 # Initialize MongoDB client
